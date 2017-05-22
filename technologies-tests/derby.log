@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Mon May 22 19:06:37 CEST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015c-311f-f818-00000e25ffa8 
-on database directory memory:C:\Work\Perso\Epita\2017s1_StructuredData\technologies-tests\testDB with class loader sun.misc.Launcher$AppClassLoader@5c647e05 
+Mon May 22 19:57:16 CEST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015c-314e-5416-00000e261230 
+on database directory memory:C:\Users\tbrou\git\2017s1_structureddata\technologies-tests\testDB with class loader sun.misc.Launcher$AppClassLoader@5c647e05 
 Loaded from file:/C:/Work/Perso/dev/eclipses/neon-jee-64/maven/repository/org/apache/derby/derby/10.13.1.1/derby-10.13.1.1.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_101-b13
-user.dir=C:\Work\Perso\Epita\2017s1_StructuredData\technologies-tests
+user.dir=C:\Users\tbrou\git\2017s1_structureddata\technologies-tests
 os.name=Windows 10
 os.arch=amd64
 os.version=10.0
