@@ -1,0 +1,13 @@
+
+	   [
+        {"groupId":'org.apache.derby',
+        "artifactId":'derby',
+        "version":'10.13.1.1',
+        },
+	
+        {"groupId":'junit',
+        "artifactId":'junit',
+        "version":'4.12',
+        }
+    ]
+	
