@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <student>
+        <property name="id" type="numeric" />
+        <property name="firstName" type="text" />
+        <property name="lastName" type="text" />
+        <property name="email" type="email" />
+        <property name="birthDate" type="date" />
+    </student>
+</metadata>

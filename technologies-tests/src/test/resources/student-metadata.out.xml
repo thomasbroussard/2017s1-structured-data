@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+	<head>
+		<meta charset="ISO-8859-1" />
+		<title>Insert title here</title>
+		<style type="text/css">
+			td, th{
+			border: 1px solid black;
+			}
+
+		</style>
+	</head>
+	<body>
+		<form>
+			<input type="text" name="" />
+			<input type="text" name="" />
+		</form>
+	</body>
+</html>
