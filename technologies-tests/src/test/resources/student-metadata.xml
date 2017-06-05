@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
     <student>
-        <property name="id" type="numeric" />
-        <property name="firstName" type="text" />
-        <property name="lastName" type="text" />
-        <property name="email" type="email" />
-        <property name="birthDate" type="date" />
+        <property name="id" type="numeric"  label="Id" />
+        <property name="firstName" type="text" label="First Name" />
+        <property name="lastName" type="text" label="Last Name"/>
+        <property name="deskNumber" type="text" label="Desk"/>
+        <property name="email" type="email" label="Email Address"/>
+        <property name="birthDate" type="date" label="Birthdate" />
+        <property name="displayName" type="calculated" value="concat(./firstName,' ', ./lastName)" />
     </student>
 </metadata>
