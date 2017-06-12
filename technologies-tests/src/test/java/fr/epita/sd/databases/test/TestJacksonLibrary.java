@@ -12,6 +12,7 @@ import java.util.List;
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -33,7 +34,14 @@ public class TestJacksonLibrary {
 		
 		List<Student> list = new ArrayList<>();
 		list.add(student);
+		list.add(student);
 		mapper.writeValue(new File("target/studentTestList.json"), list);
+
+		list = mapper.readValue(new File("target/studentTestList.json"), new TypeReference<List<Student>>(){});
+		
+		
+		System.out.println(list);
+		
 	}
 	
 }
