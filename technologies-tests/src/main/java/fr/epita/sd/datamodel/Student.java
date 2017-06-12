@@ -11,6 +11,14 @@ import java.util.Date;
  */
 public class Student {
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Student [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", birthDate="
+				+ birthDate + "]";
+	}
 	private String firstName;
 	private String lastName;
 	private String email;

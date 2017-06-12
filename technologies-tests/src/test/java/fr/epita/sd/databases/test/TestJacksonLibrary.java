@@ -17,6 +17,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.epita.sd.datamodel.Student;
+import fr.epita.sd.services.JSONService;
+import fr.epita.sd.services.impl.JSONServiceStudentJacksonImpl;
 
 /**
  * @author tbrou
@@ -41,6 +43,47 @@ public class TestJacksonLibrary {
 		
 		
 		System.out.println(list);
+		
+	}
+	
+	@Test
+	public void testJsonToStudent() {
+		JSONService<Student> studentJsonService = new JSONServiceStudentJacksonImpl();
+		//{"firstName":"Thomas","lastName":"Broussard","email":"tbr@tbr.com","birthDate":1496686609417}
+		Student student = studentJsonService.fromJson("{\"firstName\":\"Thomas\", \"lastName\": \"Broussard\", \"email\":\"tbr@tbr.com\"}");
+		
+		System.out.println("testJsonToStudent :" + student);
+		
+	}
+	@Test
+	public void testJsonToStudentAsList() {
+		JSONService<Student> studentJsonService = new JSONServiceStudentJacksonImpl();
+		//{"firstName":"Thomas","lastName":"Broussard","email":"tbr@tbr.com","birthDate":1496686609417}
+		List<Student> studentsList = studentJsonService.fromJsonAsList("[{\"firstName\":\"Thomas\", \"lastName\": \"Broussard\", \"email\":\"tbr@tbr.com\"}]");
+		
+		System.out.println("testJsonToStudentAsList :" + studentsList);
+		
+	}
+	
+	@Test
+	public void testStudentToJsonAsList() {
+		JSONService<Student> studentJsonService = new JSONServiceStudentJacksonImpl();
+		List<Student> studentList = new ArrayList<Student>();
+		studentList.add(new Student("thomas", "broussard", "-", new Date()));
+		
+		
+		System.out.println("testStudentToJsonAsList :" + studentJsonService.toJson(studentList));
+		
+	}
+	
+	
+	@Test
+	public void testStudentToJson() {
+		JSONService<Student> studentJsonService = new JSONServiceStudentJacksonImpl();
+		Student student = new Student("thomas2", "broussard", "-", new Date());
+		
+		
+		System.out.println("testStudentToJsonAsList :" + studentJsonService.toJson(student));
 		
 	}
 	
