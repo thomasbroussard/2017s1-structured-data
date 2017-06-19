@@ -11,6 +11,13 @@ import java.util.Date;
  */
 public class Student {
 	
+
+	private String firstName;
+	private String lastName;
+	private String email;
+	private Date birthDate;
+	
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -19,11 +26,6 @@ public class Student {
 		return "Student [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", birthDate="
 				+ birthDate + "]";
 	}
-	private String firstName;
-	private String lastName;
-	private String email;
-	private Date birthDate;
-	
 	/**
 	 * 
 	 */

@@ -19,12 +19,18 @@ import fr.epita.sd.datamodel.Student;
  *
  */
 public class StudentJDBCDAO {
+	
+	private static boolean created=false;
 
 	/**
 	 * @return
 	 * @throws SQLException
 	 */
 	private static Connection getConnection() throws SQLException {
+		if (created == false){
+			createDB();
+			created=true;
+		}
 		String connectionString = "jdbc:derby:memory:testDB;create=true";
 		Connection connection = DriverManager.getConnection(connectionString, "user", "test");
 		return connection;
