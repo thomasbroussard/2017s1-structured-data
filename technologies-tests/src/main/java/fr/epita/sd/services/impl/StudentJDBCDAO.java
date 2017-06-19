@@ -27,12 +27,20 @@ public class StudentJDBCDAO {
 	 * @throws SQLException
 	 */
 	private static Connection getConnection() throws SQLException {
-		if (created == false){
-			createDB();
-			created=true;
+		
+		try {
+			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		String connectionString = "jdbc:derby:memory:testDB;create=true";
 		Connection connection = DriverManager.getConnection(connectionString, "user", "test");
+		if (created == false){
+			createDB(connection);
+			created=true;
+		}
 		return connection;
 	}
 	
@@ -40,9 +48,8 @@ public class StudentJDBCDAO {
 	/**
 	 * @throws SQLException
 	 */
-	private static void createDB() throws SQLException {
-		//first : connect
-		Connection connection = getConnection();
+	private static void createDB(Connection connection) throws SQLException {
+
 		
 		
 		//secondly: create table
@@ -74,7 +81,6 @@ public class StudentJDBCDAO {
 		insertionStatement.setDate(3, new java.sql.Date(student.getBirthDate().getTime()));
 		insertionStatement.execute();
 		insertionStatement.close();
-		connection.close();
 	}
 	
 	

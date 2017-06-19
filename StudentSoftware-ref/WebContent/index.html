@@ -3,10 +3,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Welcome</title>
+
+
 </head>
 <body>
 
-	<form action="/studentaction" method="post">
+	<form id="mainForm" action="studentaction" method="post">
 		<table>
 			<tbody>
 				<tr>
@@ -30,8 +32,59 @@
 
 
 		</table>
-        <input type="submit" />
+		
 	</form>
+    <button id="button">Submit</button>
+    
+    <script type="text/javascript">
+    var student = {
+        email : "",
+        firstName : "",
+        lastName : "",
+        birthDate : ""
+    }
+   
+    function getInputAndSend() {
+        var firstName = document.getElementById("firstName").value;
+        var lastName = document.getElementById("lastName").value;
+        var birthDate = document.getElementById("birthDate").value;
+        var email = document.getElementById("email").value;
 
+        student.email = email;
+        student.firstName = firstName;
+        student.lastName = lastName;
+        student.birthDate = birthDate;
+        
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function() {
+            if (request.readyState === 4) {
+     
+                if (request.status === 200) {
+                    alert("ok");
+                } else {
+                    var messageHolder = document.createElement("div");
+                    var detailHolder = document.createElement("span");
+                    var message = JSON.parse(request.responseText);
+                    messageHolder.innerHTML = message.state;
+                    detailHolder.innerHTML = message.details;
+                    messageHolder.appendChild(detailHolder);
+                    document.getElementsByTagName("body")[0].appendChild(messageHolder);
+                    
+                }
+            }
+        }
+        var mainForm = document.getElementById("mainForm");
+        request.open(mainForm.method, mainForm.action);
+        request.send(JSON.stringify(student));
+
+    }
+
+    var button = document.getElementById("button");
+    button.onclick = function() {
+        //do something more before
+        getInputAndSend();
+    };
+</script>
 </body>
+
 </html>

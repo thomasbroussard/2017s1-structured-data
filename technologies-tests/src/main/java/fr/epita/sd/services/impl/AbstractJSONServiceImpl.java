@@ -64,9 +64,8 @@ public abstract class AbstractJSONServiceImpl<T> implements JSONService<T> {
 	public T fromJson(String jsonString) {
 		T instance = null;
 		try {
-			T student = getObjectClass().newInstance();
-			student = mapper.readValue(jsonString, getObjectClass());
-		} catch (IOException | InstantiationException | IllegalAccessException e) {
+			T student = mapper.readValue(jsonString, getObjectClass());
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="StudentSoftware-ref">
+    <wb-module deploy-name="StudentSoftware-ref-0.0.1-SNAPSHOT">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="technologies-tests-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/technologies-tests/technologies-tests">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="StudentSoftware-ref"/>
         <property name="java-output-path" value="/StudentSoftware-ref/build/classes"/>
     </wb-module>

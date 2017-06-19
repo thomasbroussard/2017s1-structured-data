@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import fr.epita.sd.datamodel.Message;
 import fr.epita.sd.datamodel.Student;
 import fr.epita.sd.services.JSONService;
-import fr.epita.sd.services.impl.AbstractJSONServiceImpl;
 import fr.epita.sd.services.impl.JSONServiceMessageJacksonImpl;
 import fr.epita.sd.services.impl.JSONServiceStudentJacksonImpl;
 import fr.epita.sd.services.impl.StudentJDBCDAO;
@@ -24,72 +23,72 @@ import fr.epita.sd.services.impl.StudentJDBCDAO;
  */
 @WebServlet("/studentaction")
 public class StudentAction extends HttpServlet {
-	
+
 	private static final StudentJDBCDAO dao = new StudentJDBCDAO();
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
-    public StudentAction() {
-        // TODO Auto-generated constructor stub
-    }
-
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Default constructor.
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	public StudentAction() {
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		ServletInputStream inputStream = request.getInputStream();
-		String jsonString = "";
-		Scanner scanner = new Scanner(inputStream);
-		while (scanner.hasNext()){
-			jsonString += scanner.nextLine();
-		}
-		
-		JSONService<Student> jsonService = new JSONServiceStudentJacksonImpl();
-		Student student = jsonService.fromJson(jsonString);
-		
-		try {
-			dao.insert(student);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		JSONService<Message> jsonMessageService = new JSONServiceMessageJacksonImpl();
-		
-		JSONService<Message> jsonMessageService2 = new AbstractJSONServiceImpl<Message>() {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-			@Override
-			public Class<Message> getObjectClass() {
-				// TODO Auto-generated method stub
-				return Message.class;
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		JSONService<Message> jsonMessageService = new JSONServiceMessageJacksonImpl();
+
+		try {
+			
+			ServletInputStream inputStream = request.getInputStream();
+			String jsonString = "";
+			Scanner scanner = new Scanner(inputStream);
+			while (scanner.hasNext()) {
+				jsonString += scanner.nextLine();
 			}
+
+			JSONService<Student> jsonService = new JSONServiceStudentJacksonImpl();
+			Student student = jsonService.fromJson(jsonString);
+
+			try {
+				dao.insert(student);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			// AbstractJSONServiceImpl<Message> jsonMessageService2 = new
+			// AbstractJSONServiceImpl<Message>(() -> Message.class);
+
+			String responseAsJson = jsonMessageService
+					.toJson(new Message("success", "the student has been inserted correctly"));
+
+			response.setStatus(200);
+			response.getWriter().println(responseAsJson);
 			
-			
-		};
-		
-		
-	//	AbstractJSONServiceImpl<Message> jsonMessageService2 = new AbstractJSONServiceImpl<Message>(() ->  Message.class);
-		
-		String responseAsJson = jsonMessageService.toJson(new Message("success", "the student has been inserted correctly"));
-		
-		response.setStatus(200);
-		response.getWriter().println(responseAsJson);
+		} catch (Exception e) {
+
+			String responseAsJson = jsonMessageService
+					.toJson(new Message("failure", "problem while inserting the student " + e.getMessage()));
+			response.setStatus(500);
+			response.getWriter().println(responseAsJson);
+
+		}
 		response.flushBuffer();
-		
-		
-		
-		
-		
+
 	}
 
 }
