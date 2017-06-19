@@ -1,3 +1,7 @@
+# TODO 12/06/2017
+- complete the project in order to perform an ajax call (preferably using vanilla).
+
+
 # TODO 05/06/2017
 - use the test "TestJacksonLibrary" to form a service which is able to transform a Student-based set of data into a json string
 - try to use that service to feed the response after having called it through an ajax query (javascript).
